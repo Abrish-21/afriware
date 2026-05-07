@@ -26,7 +26,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 DEFAULT_CONFIG = {
     "base_model":     "Davlan/bert-base-multilingual-cased-finetuned-amharic",
-    "dataset_prefix": "eth_fake",
+    "dataset_prefix": "fake_news",
     "num_labels":     2,
     "id2label":       {0: "fake", 1: "real"},
     "label2id":       {"fake": 0, "real": 1},

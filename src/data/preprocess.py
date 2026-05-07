@@ -219,12 +219,6 @@ if __name__ == "__main__":
         splits = preprocess_dataset(df, task="hate_speech")
         save_splits(splits, prefix="ranlp_amh")
 
-    # Fake news: ETH_FAKE
-    eth_fake_path = RAW_DIR / "eth_fake.csv"
-    if eth_fake_path.exists():
-        print("\n--- Preprocessing ETH_FAKE ---")
-        df = pd.read_csv(eth_fake_path)
-        splits = preprocess_dataset(df, task="fake_news")
-        save_splits(splits, prefix="eth_fake")
+    # Note: ETH_FAKE processing removed (dataset unavailable)
 
     print("\n✓ Preprocessing complete.")

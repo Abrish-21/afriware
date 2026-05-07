@@ -151,12 +151,11 @@ def build_ui() -> gr.Blocks:
     ) as demo:
 
         gr.Markdown("""
-# 🛡️ AfriAware
-### Digital Wellbeing Intelligence for Amharic
+    # 🛡️ AfriAware
+    ### Digital Wellbeing Intelligence for Amharic
 
-Detects **hate speech** and **disinformation** in Amharic text.
-Built on the [AfriHate](https://huggingface.co/datasets/afrihate/afrihate)
-and [ETH_FAKE](https://github.com/Fanpoliti/ETH_FAKE) datasets.
+    Detects **hate speech** and **disinformation** in Amharic text.
+    Built on the [AfriHate](https://huggingface.co/datasets/afrihate/afrihate) dataset.
         """)
 
         with gr.Tabs():

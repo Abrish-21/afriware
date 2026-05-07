@@ -5,7 +5,6 @@ AfriAware is an open-source NLP pipeline that detects **hate speech** and **disi
 
 This project demonstrates how culturally-grounded AI can protect communities from online harm.
 
----
 
 ## 🎯 What It Does
 
@@ -15,7 +14,6 @@ This project demonstrates how culturally-grounded AI can protect communities fro
 | Fake news detection | Amharic news article | `fake` / `real` + confidence |
 | Explainability | Either input | Top tokens driving the prediction (SHAP) |
 
----
 
 ## 📦 Datasets Used
 
@@ -23,9 +21,7 @@ This project demonstrates how culturally-grounded AI can protect communities fro
 |---------|--------|------|--------|
 | [AfriHate (amh)](https://huggingface.co/datasets/afrihate/afrihate) | HuggingFace | ~3k Amharic tweets | hate / abusive / normal |
 | [RANLP Amharic](https://huggingface.co/datasets/uhhlt/amharichatespeechranlp) | HuggingFace | 15,100 tweets | hate / offensive / normal |
-| [ETH_FAKE](https://github.com/Fanpoliti/ETH_FAKE) | GitHub/Mendeley | 6,834 articles | fake / real |
 
----
 
 ## 🏗️ Project Structure
 
@@ -61,7 +57,6 @@ afriaware/
 └── README.md
 ```
 
----
 
 ## 🚀 Quick Start
 
@@ -92,7 +87,6 @@ python app/demo.py
 # Opens at http://localhost:7860
 ```
 
----
 
 ## 🧠 Model Architecture
 
@@ -111,11 +105,7 @@ Label + Confidence score
 ```
 
 **Base model options** (configurable in `src/models/`):
-- `Davlan/bert-base-multilingual-cased-finetuned-amharic` ← recommended
-- `Davlan/afro-xlmr-base`
-- `castorini/afriberta_large`
 
----
 
 ## 📊 Baseline Results
 
@@ -123,22 +113,11 @@ Label + Confidence score
 |-------|---------|-----------|
 | mBERT fine-tuned | AfriHate (amh) | ~0.74 (AfriHate paper) |
 | mBERT fine-tuned | RANLP (amh) | ~0.917 (prior work) |
-| mBERT fine-tuned | ETH_FAKE | TBD (run training) |
 
----
 
 ## 🌍 Roadmap
 
-- [x] Amharic hate speech detection
-- [x] Amharic fake news detection
-- [x] SHAP explainability
-- [x] Gradio demo
-- [ ] Extend to Oromo (`orm`) and Tigrinya (`tir`) via AfriHate
-- [ ] Lightweight ONNX export for low-bandwidth deployment
-- [ ] REST API wrapper (FastAPI)
-- [ ] Cross-lingual transfer experiments
 
----
 
 ## 🤝 Citation
 
@@ -153,11 +132,9 @@ If you use this work, please also cite the underlying datasets:
 }
 ```
 
----
 
 ## 📄 License
 
 MIT License — open for research and NGO use.
 
----
 

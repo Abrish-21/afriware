@@ -1,6 +1,6 @@
 """
 load_datasets.py
-Downloads and caches all three datasets used in AfriAware.
+Downloads and caches the datasets used in AfriAware.
 Run directly:  python src/data/load_datasets.py
 """
 
@@ -75,58 +75,7 @@ def load_ranlp_amharic() -> pd.DataFrame:
     return df
 
 
-# ─── ETH_FAKE (Amharic Fake News) ───────────────────────────────────────────
-
-def load_eth_fake(csv_path: str = None) -> pd.DataFrame:
-    """
-    Loads the ETH_FAKE dataset.
-
-    If csv_path is provided, loads from that local file.
-    Otherwise attempts to load from HuggingFace (community mirror).
-
-    Dataset: 3,417 real + 3,417 fake Amharic news articles
-    Labels: real | fake
-    """
-    if csv_path and Path(csv_path).exists():
-        print(f"Loading ETH_FAKE from local file: {csv_path}")
-        df = pd.read_csv(csv_path)
-    else:
-        print("Loading ETH_FAKE from HuggingFace (community mirror)...")
-        try:
-            ds = load_dataset("Fanpoliti/ETH_FAKE", trust_remote_code=True)
-            frames = []
-            for split_name, split in ds.items():
-                d = split.to_pandas()
-                d["split"] = split_name
-                frames.append(d)
-            df = pd.concat(frames, ignore_index=True)
-        except Exception:
-            print(
-                "  ⚠ ETH_FAKE not found on HuggingFace.\n"
-                "  Download manually from:\n"
-                "    https://github.com/Fanpoliti/ETH_FAKE\n"
-                "  Then run:  load_eth_fake(csv_path='data/raw/ETH_FAKE.csv')"
-            )
-            return pd.DataFrame()
-
-    # Normalise column names
-    col_map = {}
-    for c in df.columns:
-        if c.lower() in ("content", "article", "body", "news"):
-            col_map[c] = "text"
-        if c.lower() in ("class", "category", "label_str"):
-            col_map[c] = "label"
-    df = df.rename(columns=col_map)
-
-    if "label" in df.columns:
-        df["label"] = df["label"].str.lower().str.strip()
-
-    out_path = RAW_DIR / "eth_fake.csv"
-    df.to_csv(out_path, index=False)
-    print(f"  ✓ ETH_FAKE saved → {out_path}  ({len(df)} rows)")
-    if "label" in df.columns:
-        print(f"  Label distribution:\n{df['label'].value_counts().to_string()}\n")
-    return df
+# ETH_FAKE dataset support removed (dataset unavailable upstream).
 
 
 # ─── Dataset summary ────────────────────────────────────────────────────────
@@ -157,7 +106,7 @@ if __name__ == "__main__":
 
     loaded["AfriHate (amh)"] = load_afrihate_amharic()
     loaded["RANLP (amh)"]    = load_ranlp_amharic()
-    loaded["ETH_FAKE"]       = load_eth_fake()
+    # ETH_FAKE removed: do not attempt to load
 
     print_summary(loaded)
 
